@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+      * {
+        font-family: "Kanit", sans-serif;
+      }
+      body {
+        margin: 0;
+        background-color: rgb(64, 7, 70);
+      }
+      .container-box {
+        width: 30vw;
+        height: 55vh;
+        /* background: linear-gradient(to right,rgb(255, 255, 255),rgb(204, 204, 204)); */
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        left: 35vw;
+        top: 22.5vh;
+        border-radius: 18px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
+        color: black;
+      }
+      .logo {
+        width: 20%;
+        height: 20%;
+        border-radius: 20%;
+        background-image: url("https://s29.picofile.com/file/8464096850/VerfiyLogo.png");
+        /* background-color:rgb(55, 0, 60); */
+        background-size: contain;
+        background-repeat: no-repeat;
+        float: left;
+        margin-left: 42%;
+        margin-top: 6%;
+        
+      }
+      .text {
+        font-size: 1vw;
+        margin-top: 2%;
+        height: 10%;
+        width: 75%;
+        float: left;
+        text-align: center;
+        margin-left: 12.5%;
+        line-height: 10px;
+      }
+      .subtext {
+        width: 90%;
+        height: 20%;
+        float: left;
+        margin: 2%;
+        margin-left: 4%;
+        text-align: center;
+        font-size: 1.15vw;
+
+      }
+      .inputs {
+        float: left;
+        width: 50%;
+        height: 30%;
+        margin-left: 26%;
+      }
+
+      .num-code {
+        width: 2.3vw;
+        height: 5vh;
+        border-radius: 8px;
+        outline: none;
+        float: left;
+        margin-left: 9px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+        border: 2px solid #ddd;
+      }
+      .notinput {
+        display: none;
+      }
+
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+      .verify {
+        width: 90%;
+        height: 6vh;
+        margin-left: 10px;
+        margin-top: 12px;
+        border-radius: 7px;
+        background-color: rgb(131, 74, 136);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        pointer-events: none;
+        border: 0;
+        font-size: 1vw;
+      }
+      .verify.active {
+        color: #ffffff;
+        background-color: rgb(117, 34, 122);
+        pointer-events: auto;
+      }
+      .verify:hover {
+        background-color: rgb(55, 0, 60);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-box">
+      <div class="logo"></div>
+      <div class="text">
+        <h1>Enter security Code</h1>
+      </div>
+
+      <div class="subtext">
+        <span id="EmailResiver"
+          >We send a code to football.fantasy.shahed@gmail.com Please enter the
+          code to continue</span
+        >
+      </div>
+
+      <div class="inputs">
+        <div>
+          <input type="number" class="num-code" />
+          <input type="number" class="num-code" disabled />
+          <input type="number" class="num-code" disabled />
+          <input type="number" class="num-code" disabled />
+          <button class="verify" id="button-otp" onclick="getValues()">
+            Verify Code
+          </button>
+        </div>
+      </div>
+      <div class="button-code"></div>
+    </div>
+    <script>
+      var Code;
+      var Email="";
+      function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+          }
+      
+      fetch("http://localhost:3001/verfiyation/emailcheck")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("EmailResiver").innerHTML =
+            "We send a code to " + data.massage + ".Enter the code to continue";
+            Email=data.massage;
+        })
+        .catch((error) => console.log(error));
+      fetch("http://localhost:3001/verfiyation/codecheck")
+        .then((response) => response.json())
+        .then((data) => {
+          Code = data.code;
+          console.log(Code);
+        })
+        .catch((error) => console.log(error));
+      const inputs = document.querySelectorAll("input"),
+        button = document.getElementById("button-otp");
+
+      // iterate over all inputs
+      inputs.forEach((input, index1) => {
+        input.addEventListener("keyup", (e) => {
+          // This code gets the current input element and stores it in the currentInput variable
+          // This code gets the next sibling element of the current input element and stores it in the nextInput variable
+          // This code gets the previous sibling element of the current input element and stores it in the prevInput variable
+          const currentInput = input,
+            nextInput = input.nextElementSibling,
+            prevInput = input.previousElementSibling;
+
+          // if the value has more than one character then clear it
+          if (currentInput.value.length > 1) {
+            currentInput.value = "";
+            return;
+          }
+          // if the next input is disabled and the current value is not empty
+          //  enable the next input and focus on it
+          if (
+            nextInput &&
+            nextInput.hasAttribute("disabled") &&
+            currentInput.value !== ""
+          ) {
+            nextInput.removeAttribute("disabled");
+            nextInput.focus();
+          }
+
+          // if the backspace key is pressed
+          if (e.key === "Backspace") {
+            // iterate over all inputs again
+            inputs.forEach((input, index2) => {
+              // if the index1 of the current input is less than or equal to the index2 of the input in the outer loop
+              // and the previous element exists, set the disabled attribute on the input and focus on the previous element
+              if (index1 <= index2 && prevInput) {
+                input.setAttribute("disabled", true);
+                input.value = "";
+                prevInput.focus();
+              }
+            });
+          }
+          //if the fourth input( which index number is 3) is not empty and has not disable attribute then
+          //add active class if not then remove the active class.
+          if (!inputs[3].disabled && inputs[3].value !== "") {
+            button.classList.add("active");
+            return;
+          }
+          button.classList.remove("active");
+        });
+      });
+      function ToInt(str) {
+        return str - "0";
+      }
+      function getValues() {
+        var main_result = 0;
+        for (var i = 0; i < 4; i++) {
+          main_result = main_result * 10 + ToInt(inputs[i].value);
+        }
+        const stringResult = main_result.toString();
+        if (Code === stringResult) {
+
+          document.getElementById("EmailResiver").innerHTML =
+            "Registrstion was successfuly";
+          fetch("http://localhost:3001/verfiyation/saveDataToUser")
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.status=="OK")
+                {
+                    console.log(data.massage);
+                }
+            })
+            .catch((error) => console.log(error));
+          const valueToken = {
+            email: Email
+          };
+          
+          
+
+          setTimeout(function () {
+            window.location.replace("http://localhost:3001/authentication/signin");
+          }, 1000);
+        }
+        if(Code!=stringResult)
+        {
+          document.getElementById("EmailResiver").innerHTML =
+            "Security code is wrong.";
+        }
+      }
+
+      //focus the first input which index is 0 on window load
+      window.addEventListener("load", () => inputs[0].focus());
+    </script>
+  </body>
+</html>

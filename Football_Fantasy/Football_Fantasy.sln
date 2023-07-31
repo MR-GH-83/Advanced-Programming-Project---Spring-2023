@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football_Fantasy", "Football_Fantasy\Football_Fantasy.csproj", "{CE7D5F3B-99FC-472A-8336-CA8BC5E0679B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE7D5F3B-99FC-472A-8336-CA8BC5E0679B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7D5F3B-99FC-472A-8336-CA8BC5E0679B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7D5F3B-99FC-472A-8336-CA8BC5E0679B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7D5F3B-99FC-472A-8336-CA8BC5E0679B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
