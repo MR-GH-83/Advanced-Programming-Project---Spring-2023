@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="stylesheet" href="../Css/sign_up.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="//img.uefa.com/imgml/favicon/comp/ucl.ico"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://www.uefa.com/CompiledAssets/UefaCom/css/fonts/global.css" as="style" onload="this.onload = null; this.rel = 'stylesheet';">
+  </head>
+  <body>
+    <div class="navigation">
+      <span>Football Fantasy</span>
+      <ul>
+        <li id="home"><a href="../../index.html?auth=0">Home</a></li>
+        <li id="news"><a href="./new.html">News</a></li>
+        <li id="sign_in"><a href="./sign_in.html">Sign in</a></li>
+        <li id="sign_up"><a href="./sign_up.html">Sign up</a></li>
+      </ul>
+    </div>
+    <main>
+      <div class="box">
+        <div class="inner-box">
+          <div class="forms-wrap">
+            <form action="#" autocomplete="off" class="sign-in-form" >
+              <div class="logo">
+                <h4>Football Fantasy</h4>
+              </div>
+
+              <div class="heading">
+                <h2>Welcome Back</h2>
+                <h6>Not registred yet?</h6>
+                <a href="#" class="toggle">Sign up</a>
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <label class="show-response email" id="response_email"></label>
+                  <input
+                    type="email"
+                    minlength="4"
+                    class="input-field"
+                    id="signin-email"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Email</label>
+                </div>
+
+                <div class="input-wrap">
+                  <label class="show-response password" id="response_password"></label>
+                  <input
+                    type="password"
+                    minlength="4"
+                    class="input-field"
+                    id="signin-password"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Password</label>
+                </div>
+
+                <button class="sign-btn" onclick="SignIn()">Sign In</button>
+
+                <p class="text">
+                  Forgotten your password or you login datails?
+                  <a href="#">Get help</a> signing in
+                </p>
+              </div>
+            </form>
+
+            <div id="form_signup" autocomplete="off" class="sign-up-form">
+              <div class="logo">
+                <h4>Football Fantasy</h4>
+              </div>
+
+              <div class="heading">
+                <h2>Get Started</h2>
+                <h6>Already have an account?</h6>
+                <a href="#" class="toggle">Sign in</a>
+              </div>
+              <label class="show-response" id="response_signup"></label>
+              <div class="actual-form" id="signup" >
+                <div class="input-wrap">
+                  
+                  <input
+                    type="text"
+                    minlength="4"
+                    class="input-field"
+                    id="signup_name_input"
+                  />
+                  <label>Name</label>
+                </div>
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    class="input-field"
+                    id="signup_username_input"
+                  />
+                  <label>User Name</label>
+                </div>
+                <div class="input-wrap">
+                  <input
+                    type="email"
+                    class="input-field"
+                    
+                    id="signup_email_input"
+                  />
+                  <label>Email</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    minlength="4"
+                    class="input-field"
+                    
+                    id="signup_password_input"
+                  />
+                  <label>Password</label>
+                </div>
+
+                <button class="sign-btn" onclick="SignUp()" >Sign Up</button>
+
+                <p class="text">
+                  By signing up, I agree to the
+                  <a href="">Terms of Services</a> and
+                  <a href="#">Privacy Policy</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel">
+            <div class="images-wrapper">
+              <!-- <div class="image img-1 show"></div>
+              <div class="image img-2"></div>
+              <div class="image img-3"></div> -->
+              <img src="../Img/Player_2.png" class="image img-1 show" alt="" />
+              <img src="" class="image img-2" alt="" />
+              <img src="" class="image img-3" alt="" />
+            </div>
+
+            <div class="text-slider">
+              <div class="text-wrap">
+                <div class="text-group">
+                  <h2>Create your team</h2>
+                  <h2>Customize as you like</h2>
+                  <h2>Customize as you like</h2>
+                </div>
+              </div>
+
+              <div class="bullets">
+                <span class="active" data-value="1"></span>
+                <span data-value="2"></span>
+                <span data-value="3"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Javascript file -->
+    <script src="../Js/authentication.js"></script>
+    <script src="../Js/app.js"></script>
+  </body>
+</html>
